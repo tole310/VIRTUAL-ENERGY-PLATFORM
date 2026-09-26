@@ -11,6 +11,7 @@ public class Main {
      System.out.println("Virtual Energy & IOT Monitoring Platform");
      System.out.println("Project skeleton is working.");
      System.out.println("Git is now tracking this project.");
+     System.out.println("Working on the alert-system branch.");
 
      Device device = new Device(1, "Solar Panel 1", "SOLAR_PANEL");
        
