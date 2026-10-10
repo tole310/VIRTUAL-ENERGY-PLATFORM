@@ -1,29 +1,30 @@
 package com.tole.energy.model;
 
-
 public class Measurement {
     
     private Device device;
     private double voltage;
-    private double  current;
+    private double current;
     
-
-    public Measurement( Device device,double voltage, double current){
+    public Measurement(Device device, double voltage, double current) {
         this.device = device;
         this.voltage = voltage;
         this.current = current;
-        
     }
+
     public Device getDevice() {
-    return device;
+        return device;
+    }
+
+    public double getVoltage() {
+        return voltage;
+    }
+
+    public double getCurrent() {
+        return current;
+    }
+
+    public double calculatePower() {
+        return voltage * current;
+    }
 }
-
-
-public double calculatePower(){
-    return voltage * current;
-}
-
-
-    
-}
-

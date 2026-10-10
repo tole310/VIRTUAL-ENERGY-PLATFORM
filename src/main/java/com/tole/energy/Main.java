@@ -1,51 +1,36 @@
 package com.tole.energy;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.tole.energy.model.Device;
 import com.tole.energy.model.Measurement;
 import com.tole.energy.model.Alert;
 import com.tole.energy.service.EnergyMonitoringService;
 
-
+@SpringBootApplication
 public class Main {
-     public static void main(String[] args) {
-            
-     System.out.println("Virtual Energy & IOT Monitoring Platform");
-     System.out.println("Project skeleton is working.");
-     System.out.println("Git is now tracking this project.");
-     System.out.println("Working on the alert-system branch.");
 
-     Device device = new Device(1, "Solar Panel 1", "SOLAR_PANEL");
-       
+    public static void main(String[] args) {
+        // This launches the Spring Boot Application context and embedded Tomcat server
+        SpringApplication.run(Main.class, args);
+        
+        // Your existing confirmation logs
+        System.out.println("==================================================");
+        System.out.println("Virtual Energy & IOT Monitoring Platform Booted!");
+        System.out.println("Project framework: Spring Boot converted successfully.");
+        System.out.println("==================================================");
+        
+        // Basic diagnostic structural checks
+        Device device = new Device(1, "Solar Panel 1", "SOLAR_PANEL");
+        System.out.println("Verified Device: " + device.getName());
 
-      System.out.println(device.getName());
-      System.out.println(device.getId());
-      System.out.println(device.getType());
+        Measurement measurement = new Measurement(device, 230.5, 4.75);
+        System.out.println("Calculated Power: " + measurement.calculatePower() + " W");
 
-
-      Measurement measurement = new Measurement(device,230.5, 4.75);
-
-      System.out.println(measurement.calculatePower());
-      System.out.println(measurement.getDevice().getName());
-
-      Alert alert = new Alert( device,"VOLTAGE IS TOO HIGH", "HIGH");
-      
-    System.out.println(alert.getDevice().getName());
-    System.out.println(alert.getMessage());
-    System.out.println(alert.getSeverity());
-
-    EnergyMonitoringService service = new EnergyMonitoringService();
-
-Alert result = service.checkMeasurement(measurement);
-
-if (result != null) {
-  System.out.println("Alert");
-    System.out.println(result.getDevice().getName());
-    System.out.println(result.getMessage());
-    System.out.println(result.getSeverity());
-    
-}
-
-
-
+        EnergyMonitoringService service = new EnergyMonitoringService();
+        Alert result = service.checkMeasurement(measurement);
+        if (result != null) {
+            System.out.println("Alert Condition Triggered: " + result.getMessage());
+        }
     }
-    
 }
